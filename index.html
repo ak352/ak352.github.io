@@ -23,14 +23,15 @@
       color: var(--text);
       margin: 0;
       padding: 2rem;
-      max-width: 600px;
+      max-width: 900px;
       margin-left: auto;
       margin-right: auto;
       transition: background-color 0.3s, color 0.3s;
     }
 
-    h1 {
+    h1, h2 {
       color: var(--text);
+      margin-top: 0;
     }
 
     a {
@@ -42,8 +43,23 @@
       text-decoration: underline;
     }
 
-    .links {
-      margin-top: 1.5rem;
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .sidebar {
+      flex: 1 1 200px;
+      max-width: 240px;
+    }
+
+    .profile {
+      width: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--text);
+      margin-bottom: 1rem;
     }
 
     .links a {
@@ -51,13 +67,8 @@
       margin-bottom: 0.5rem;
     }
 
-    .profile {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 2px solid var(--text);
+    .main {
+      flex: 2 1 300px;
     }
 
     .toggle-button {
@@ -66,8 +77,12 @@
       border: 1px solid var(--text);
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       color: var(--text);
+    }
+
+    .video-section {
+      margin-top: 3rem;
     }
 
     .video-container {
@@ -88,34 +103,45 @@
       border: none;
       border-radius: 8px;
     }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
   <button class="toggle-button" onclick="toggleDarkMode()">🌗 Toggle Dark Mode</button>
 
-  <img src="profile.jpeg" alt="Abhimanyu Krishna" class="profile" />
+  <div class="container">
+    <div class="sidebar">
+      <img src="profile.jpeg" alt="Abhimanyu Krishna" class="profile" />
+      <div class="links">
+        <a href="mailto:abhimanyukrishn@gmail.com">📧 Email</a>
+        <a href="https://github.com/ak352">🐙 GitHub</a>
+        <a href="https://www.linkedin.com/in/abhimanyukrishna">💼 LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=acAMOoAAAAAJ&hl=en">📚 Google Scholar</a>
+      </div>
+    </div>
 
-  <h1>Abhimanyu Krishna</h1>
-  <p>Hi! I'm a computer vision engineer who enjoys building real-time perception apps and exploring interactive AI experiences. I’m currently exploring ideas at the intersection of AR, mobile, and deep learning.</p>
-  <p>Some recent demos I have built to explore AR features in Android are shown in these videos:</p>
-
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/n831-A2-4l0" allowfullscreen></iframe>
+    <div class="main">
+      <h1>Abhimanyu Krishna</h1>
+      <p>I’m a computer vision engineer passionate about building real-time perception apps and interactive AI experiences. My current focus lies at the intersection of AR, mobile, and deep learning.</p>
+    </div>
   </div>
 
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/dDRSnuwQQxk" allowfullscreen></iframe>
-  </div>
+  <div class="video-section">
+    <h2>Featured Projects</h2>
+    <p>Some recent demos I've built to explore AR features in Android:</p>
 
-  <!-- <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/yTVU1Z9G9qo" allowfullscreen></iframe>
-  </div> -->
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/n831-A2-4l0" allowfullscreen></iframe>
+    </div>
 
-  <div class="links">
-    <a href="mailto:abhimanyukrishn@gmail.com">📧 Email</a>
-    <a href="https://github.com/ak352">🐙 GitHub</a>
-    <a href="https://www.linkedin.com/in/abhimanyukrishna">💼 LinkedIn</a>
-    <a href="https://scholar.google.com/citations?user=acAMOoAAAAAJ&hl=en">📚 Google Scholar</a>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dDRSnuwQQxk" allowfullscreen></iframe>
+    </div>
   </div>
 
   <script>
@@ -124,7 +150,6 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
 
-    // Load saved theme on page load
     (function() {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
